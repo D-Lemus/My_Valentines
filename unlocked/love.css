@@ -1,0 +1,428 @@
+/* ===================================
+   CSS VARIABLES & ROOT STYLES
+   =================================== */
+:root {
+    --primary-red: #C40000;
+    --deep-red: #8B0000;
+    --soft-cream: #fffefa;
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --header-height: 100px;
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===================================
+   BODY & LAYOUT
+   =================================== */
+.love-body {
+    background: linear-gradient(135deg, var(--soft-cream) 0%, #fff5f0 100%);
+    min-height: 100vh;
+    padding-top: var(--header-height);
+    font-family: 'Cormorant Garamond', serif;
+    color: #2c2c2c;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Subtle background pattern */
+.love-body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(196, 0, 0, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(196, 0, 0, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===================================
+   HEADER
+   =================================== */
+.header {
+    background: linear-gradient(180deg, var(--primary-red) 0%, #b30000 100%);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: var(--header-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(196, 0, 0, 0.3), 0 0 60px rgba(196, 0, 0, 0.15);
+    z-index: 1000;
+    transition: box-shadow var(--transition-smooth);
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3) 50%, transparent);
+}
+
+.title-header {
+    color: #ffffff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    animation: fadeInDown 0.8s ease-out;
+}
+
+/* ===================================
+   HEART CONTAINER
+   =================================== */
+.heart-container {
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: fadeIn 1s ease-out 0.3s backwards;
+}
+
+/* ===================================
+   POEM SECTION
+   =================================== */
+.highlight-poem {
+    padding: 60px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease-out 0.2s backwards;
+}
+
+.poem-title {
+    margin-bottom: 20px;
+}
+
+.poem-title h2 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.poem-stanza {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.poem-stanza-indent {
+    margin-top: 15px;
+    padding: 0 30px;
+}
+
+.poem-stanza p {
+    margin: 0;
+    animation: fadeInStagger 0.6s ease-out backwards;
+}
+
+.poem-stanza p:nth-child(1) { animation-delay: 0.4s; }
+.poem-stanza p:nth-child(2) { animation-delay: 0.5s; }
+.poem-stanza p:nth-child(3) { animation-delay: 0.6s; }
+.poem-stanza p:nth-child(4) { animation-delay: 0.7s; }
+.poem-stanza p:nth-child(5) { animation-delay: 0.8s; }
+
+/* ===================================
+   BUTTON SECTION
+   =================================== */
+.love-button {
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px 80px;
+    animation: fadeInUp 1s ease-out 0.9s backwards;
+}
+
+.cta-button {
+    background: linear-gradient(135deg, var(--primary-red) 0%, var(--deep-red) 100%);
+    color: white;
+    height: 65px;
+    min-width: 200px;
+    padding: 0 30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 
+        0 6px 0 var(--deep-red),
+        0 10px 25px rgba(196, 0, 0, 0.4);
+    transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: translateY(0);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Button shine effect */
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 0 var(--deep-red),
+        0 15px 35px rgba(196, 0, 0, 0.5);
+}
+
+.cta-button:active {
+    transform: translateY(4px);
+    box-shadow: 
+        0 2px 0 var(--deep-red),
+        0 5px 15px rgba(196, 0, 0, 0.3);
+}
+
+.cta-button:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 4px;
+}
+
+.button-icon {
+    font-size: 24px;
+    display: inline-block;
+    animation: heartPulse 1.5s ease-in-out infinite;
+}
+
+/* ===================================
+   ANIMATIONS
+   =================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInStagger {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes heartPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* ===================================
+   VIDEO SECTION (if needed later)
+   =================================== */
+.video-container {
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.video-frame {
+    border-radius: 15px;
+    width: 100%;
+    max-width: 690px;
+    aspect-ratio: 16/9;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+
+iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+/* Tablets */
+@media (max-width: 768px) {
+    :root {
+        --header-height: 90px;
+    }
+
+    .title-header {
+        font-size: 28px;
+        letter-spacing: 1.5px;
+    }
+
+    .heart-container {
+        left: 20px;
+    }
+
+    .highlight-poem {
+        padding: 40px 15px 30px;
+        gap: 20px;
+    }
+
+    .poem-title h2 {
+        font-size: 28px;
+    }
+
+    .poem-stanza-indent {
+        padding: 0 20px;
+    }
+
+    .cta-button {
+        height: 60px;
+        min-width: 180px;
+        font-size: 20px;
+        padding: 0 25px;
+    }
+
+    .love-button {
+        padding: 40px 20px 60px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    :root {
+        --header-height: 140px;
+    }
+
+    .header {
+        flex-direction: column;
+        padding: 15px 0;
+        gap: 10px;
+    }
+
+    .heart-container {
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+        margin-bottom: 5px;
+    }
+
+    .title-header {
+        font-size: 24px;
+        letter-spacing: 1px;
+        padding: 0 10px;
+    }
+
+    .highlight-poem {
+        padding: 30px 10px 20px;
+        gap: 15px;
+    }
+
+    .poem-title h2 {
+        font-size: 24px;
+    }
+
+    .poem-stanza {
+        gap: 10px;
+    }
+
+    .poem-stanza-indent {
+        padding: 0 10px;
+        margin-top: 10px;
+    }
+
+    .cta-button {
+        height: 55px;
+        min-width: 160px;
+        font-size: 18px;
+        padding: 0 20px;
+        gap: 8px;
+    }
+
+    .button-icon {
+        font-size: 20px;
+    }
+
+    .love-button {
+        padding: 30px 15px 50px;
+    }
+
+    .video-container {
+        padding: 60px 15px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .title-header {
+        font-size: 20px;
+    }
+
+    .poem-title h2 {
+        font-size: 20px;
+    }
+
+    .cta-button {
+        height: 50px;
+        min-width: 140px;
+        font-size: 16px;
+    }
+}
